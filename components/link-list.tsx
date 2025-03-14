@@ -5,13 +5,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2, ExternalLink } from "lucide-react";
 import { deleteLink, getLinks } from "@/lib/actions";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
 import EditLinkDialog from "./edit-link-dialog";
 import type { Link } from "@/lib/types";
 
 export default function LinkList() {
-  const router = useRouter();
+  // const router = useRouter();
   const [links, setLinks] = useState<Link[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingLink, setEditingLink] = useState<Link | null>(null);
@@ -23,6 +23,7 @@ export default function LinkList() {
         const data = await getLinks();
         setLinks(data);
       } catch (error) {
+        console.log(error);
         toast({
           title: "Error",
           description: "Failed to fetch links",
@@ -53,6 +54,7 @@ export default function LinkList() {
           description: "Link deleted successfully",
         });
       } catch (error) {
+        console.log(error);
         toast({
           title: "Error",
           description: "Failed to delete link",

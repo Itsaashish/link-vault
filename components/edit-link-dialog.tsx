@@ -69,6 +69,7 @@ export default function EditLinkDialog({
       onSave(updatedLink);
       router.refresh();
     } catch (error) {
+      console.log(error);
       toast({
         title: "Error",
         description: "Failed to update link",
