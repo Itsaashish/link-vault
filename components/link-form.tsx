@@ -59,6 +59,7 @@ export default function LinkForm() {
       // Refresh the links list
       router.refresh();
     } catch (error) {
+      console.log(error);
       toast({
         title: "Error",
         description: "Failed to save link",

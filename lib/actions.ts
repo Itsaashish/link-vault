@@ -1,71 +1,3 @@
-// "use server";
-
-// import { connectToDatabase } from "./db";
-// import type { Link, LinkInput } from "./types";
-
-// export async function saveLink(linkData: LinkInput): Promise<Link> {
-//   const db = await connectToDatabase();
-//   const collection = db.collection("links");
-
-//   const now = new Date().toISOString();
-//   const newLink = {
-//     ...linkData,
-//     createdAt: now,
-//     updatedAt: now,
-//   };
-
-//   const result = await collection.insertOne(newLink);
-
-//   return {
-//     _id: result.insertedId.toString(),
-//     ...newLink,
-//   };
-// }
-
-// export async function getLinks(): Promise<Link[]> {
-//   const db = await connectToDatabase();
-//   const collection = db.collection("links");
-
-//   const links = await collection.find({}).sort({ createdAt: -1 }).toArray();
-
-//   return links.map((link) => ({
-//     ...link,
-//     _id: link._id.toString(),
-//   }));
-// }
-
-// export async function deleteLink(id: string): Promise<boolean> {
-//   const db = await connectToDatabase();
-//   const collection = db.collection("links");
-
-//   const result = await collection.deleteOne({ _id: id });
-
-//   return result.deletedCount === 1;
-// }
-
-// export async function updateLink(
-//   id: string,
-//   linkData: LinkInput
-// ): Promise<Link> {
-//   const db = await connectToDatabase();
-//   const collection = db.collection("links");
-
-//   const updatedLink = {
-//     ...linkData,
-//     updatedAt: new Date().toISOString(),
-//   };
-
-//   await collection.updateOne({ _id: id }, { $set: updatedLink });
-
-//   return {
-//     _id: id,
-//     ...updatedLink,
-//     createdAt:
-//       (await collection.findOne({ _id: id }))?.createdAt ||
-//       new Date().toISOString(),
-//   };
-// }
-
 "use server";
 
 import { connectToDatabase } from "./db";
@@ -83,7 +15,8 @@ export async function saveLink(linkData: LinkInput): Promise<Link> {
     updatedAt: now,
   };
 
-  const result = await collection.insertOne(newLink as any);
+  // const result = await collection.insertOne(newLink as any);
+  const result = await collection.insertOne(newLink as LinkDocument);
 
   return {
     _id: result.insertedId.toString(),

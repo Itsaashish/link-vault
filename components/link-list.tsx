@@ -105,7 +105,7 @@ export default function LinkList() {
         <CardContent className="p-6 text-center">
           {searchTerm ? (
             <p className="text-muted-foreground">
-              No links found matching "{searchTerm}"
+              No links found matching `{searchTerm}`
             </p>
           ) : (
             <p className="text-muted-foreground">
