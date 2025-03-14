@@ -1,6 +1,9 @@
+"use client";
+
 import LinkForm from "@/components/link-form";
 import LinkList from "@/components/link-list";
 import { SearchBar } from "@/components/search-bar";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -11,7 +14,9 @@ export default function Home() {
           <LinkForm />
         </div>
         <div className="space-y-6">
-          <SearchBar />
+          <Suspense fallback={<p>Loading search...</p>}>
+            <SearchBar />
+          </Suspense>
           <LinkList />
         </div>
       </div>
